@@ -1,0 +1,74 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/style.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/script.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[redirects]]
+  from = "https://www.shai-systems.com/*"
+  to   = "https://shai-systems.com/:splat"
+  status = 301
+  force  = true
+
+# --- UTM Tracking Links ---
+
+# WhatsApp
+[[redirects]]
+  from = "/wa-private"
+  to   = "/?utm_source=whatsapp&utm_medium=messaging&utm_campaign=private"
+  status = 302
+
+[[redirects]]
+  from = "/wa-pro"
+  to   = "/?utm_source=whatsapp&utm_medium=messaging&utm_campaign=professional"
+  status = 302
+
+# Email
+[[redirects]]
+  from = "/mail-private"
+  to   = "/?utm_source=email&utm_medium=email&utm_campaign=private"
+  status = 302
+
+[[redirects]]
+  from = "/mail-pro"
+  to   = "/?utm_source=email&utm_medium=email&utm_campaign=professional"
+  status = 302
+
+# Instagram
+[[redirects]]
+  from = "/ig-private"
+  to   = "/?utm_source=instagram&utm_medium=social&utm_campaign=private"
+  status = 302
+
+[[redirects]]
+  from = "/ig-pro"
+  to   = "/?utm_source=instagram&utm_medium=social&utm_campaign=professional"
+  status = 302
+
+# Facebook
+[[redirects]]
+  from = "/fb-private"
+  to   = "/?utm_source=facebook&utm_medium=social&utm_campaign=private"
+  status = 302
+
+[[redirects]]
+  from = "/fb-pro"
+  to   = "/?utm_source=facebook&utm_medium=social&utm_campaign=professional"
+  status = 302
