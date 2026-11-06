@@ -224,12 +224,29 @@ const Lang = {
     if (!btnHe || !btnEn) return;
 
     btnHe.addEventListener('click', () => this.set('he'));
-    btnEn.addEventListener('click', () => this.set('en'));
+    if (btnEn.tagName === 'A') {
+      // English now has a stable, crawlable URL. Let the link navigate normally.
+      btnEn.addEventListener('click', () => DL.langSwitch(state.lang, 'en'));
+    } else {
+      btnEn.addEventListener('click', () => this.set('en'));
+    }
 
-    // Default is Hebrew
-    this._updateUI('he');
-    this._translateAll('he');
-    const waMsg = encodeURIComponent(CONFIG.waMessageHe);
+    // Default is Hebrew, unless the URL explicitly requests English
+    // (keeps /?lang=en honest for the hreflang="en" tag in <head>)
+    const params = new URLSearchParams(window.location.search);
+    const initialLang = params.get('lang') === 'en' ? 'en' : 'he';
+
+    state.lang = initialLang;
+    document.documentElement.lang = initialLang;
+    document.documentElement.dir  = initialLang === 'he' ? 'rtl' : 'ltr';
+    document.body.dir             = initialLang === 'he' ? 'rtl' : 'ltr';
+    document.body.classList.toggle('lang-en', initialLang === 'en');
+
+    this._updateUI(initialLang);
+    this._translateAll(initialLang);
+    const waMsg = encodeURIComponent(
+      initialLang === 'he' ? CONFIG.waMessageHe : CONFIG.waMessageEn
+    );
     document.querySelectorAll('[data-wa]').forEach(el => {
       el.href = `https://wa.me/${CONFIG.waPhone}?text=${waMsg}`;
     });
@@ -267,8 +284,12 @@ const Lang = {
       ?.classList.toggle('is-active', !isHe);
     document.getElementById('btn-he')
       ?.setAttribute('aria-pressed', isHe);
-    document.getElementById('btn-en')
-      ?.setAttribute('aria-pressed', !isHe);
+    const btnEn = document.getElementById('btn-en');
+    if (btnEn?.tagName === 'A') {
+      btnEn.removeAttribute('aria-pressed');
+    } else {
+      btnEn?.setAttribute('aria-pressed', !isHe);
+    }
 
     // Skip link text
     const skip = document.querySelector('.skip-link');
@@ -399,6 +420,9 @@ const RevealObserver = {
   init() {
     if (!window.matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
 
+    const items = document.querySelectorAll('.reveal');
+    if (!items.length || !('IntersectionObserver' in window)) return;
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -408,7 +432,8 @@ const RevealObserver = {
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.documentElement.classList.add('reveal-ready');
+    items.forEach(el => observer.observe(el));
   },
 };
 
@@ -526,6 +551,20 @@ const Form = {
     if (!field) return true;
     const value  = key === 'privacy' ? field.checked : field.value;
     const valid  = this._rules[key]?.(value) ?? true;
+
+    // Privacy checkbox lives outside .form__field — handle its error UI separately
+    if (key === 'privacy') {
+      const group = field.closest('.form__privacy');
+      const errEl = document.getElementById('privacy-error');
+      group?.classList.toggle('has-error', !valid);
+      if (errEl) {
+        errEl.textContent = !valid ? (this._errorMessages[state.lang]?.[key] || '') : '';
+        errEl.style.display = !valid ? 'block' : 'none';
+      }
+      if (!valid) DL.formError(key, 'invalid_value');
+      return valid;
+    }
+
     const group  = field.closest('.form__field');
     const errEl  = group?.querySelector('.form__error');
 
@@ -744,6 +783,9 @@ const PrivacyModal = {
     this.overlay.addEventListener('click', (e) => {
       if (e.target === this.overlay) this.close();
     });
+
+    // Close button
+    this.overlay.querySelector('.modal__close')?.addEventListener('click', () => this.close());
 
     // Trigger links
     document.querySelectorAll('[data-privacy]').forEach(el => {

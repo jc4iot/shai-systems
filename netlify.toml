@@ -21,11 +21,29 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/onepager.pdf"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
 [[redirects]]
   from = "https://www.shai-systems.com/*"
   to   = "https://shai-systems.com/:splat"
   status = 301
   force  = true
+
+# Move the JavaScript-switched English variant to a stable crawlable URL.
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 301
+  force = true
+  query = {lang = "en"}
 
 # --- UTM Tracking Links ---
 

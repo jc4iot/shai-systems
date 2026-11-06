@@ -14,20 +14,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>הצהרת נגישות | שי מערכות חכמות</title>
   <meta name="robots" content="noindex, follow" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20261106c" />
   <style>
     .a11y-page { padding-block: 120px var(--sp-20); min-height: 100vh; }
-    .a11y-page h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; color: var(--ink); margin-bottom: var(--sp-8); }
-    .a11y-page h2 { font-size: var(--text-lg); font-weight: 700; color: var(--ink); margin: var(--sp-10) 0 var(--sp-3); }
-    .a11y-page p, .a11y-page li { font-size: var(--text-base); color: var(--ink-soft); line-height: 1.8; margin-bottom: var(--sp-3); }
+    .a11y-page h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; color: var(--cream); margin-bottom: var(--sp-8); }
+    .a11y-page h2 { font-size: var(--text-lg); font-weight: 700; color: var(--cream); margin: var(--sp-10) 0 var(--sp-3); }
+    .a11y-page p, .a11y-page li { font-size: var(--text-base); color: var(--cream-soft); line-height: 1.8; margin-bottom: var(--sp-3); }
     .a11y-page ul { padding-inline-start: var(--sp-6); list-style: disc; }
-    .a11y-page a { color: var(--ink); border-bottom: 0.5px solid var(--border); }
+    .a11y-page a { color: var(--gold); border-bottom: 1px solid var(--line); }
     .a11y-page a:hover { border-color: var(--gold); }
-    .a11y-back { display: inline-flex; align-items: center; gap: var(--sp-2); font-size: var(--text-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: var(--sp-10); border-bottom: none !important; transition: color 150ms ease; }
-    .a11y-back:hover { color: var(--ink); }
+    .a11y-back { display: inline-flex; align-items: center; gap: var(--sp-2); font-size: var(--text-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--cream-mute); margin-bottom: var(--sp-10); border-bottom: none !important; transition: color 150ms ease; }
+    .a11y-back:hover { color: var(--gold); }
   </style>
 </head>
 <body>
@@ -35,10 +32,10 @@
 <nav id="navbar" role="navigation" aria-label="ניווט ראשי">
   <div class="container">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo" aria-label="שי מערכות חכמות – עמוד הבית">
+      <a href="/" class="nav__logo" aria-label="שי מערכות חכמות, עמוד הבית">
         <span class="nav__logo-he">שי מערכות חכמות</span>
       </a>
-      <a href="index.html#contact" class="btn btn--dark">להצעת מחיר</a>
+      <a href="/#contact" class="btn btn--dark">להצעת מחיר</a>
     </div>
   </div>
 </nav>
@@ -46,31 +43,30 @@
 <main id="main-content" class="section section--white a11y-page">
   <div class="container" style="max-width:760px">
 
-    <a href="index.html" class="a11y-back">← חזרה לעמוד הבית</a>
+    <a href="/" class="a11y-back">← חזרה לעמוד הבית</a>
 
     <div class="gold-rule"></div>
     <p class="eyebrow">נגישות</p>
     <h1>הצהרת נגישות</h1>
 
-    <p>שי מערכות חכמות מחויבת לנגישות דיגיטלית ושואפת לאפשר לכל אדם, לרבות אנשים עם מוגבלות, לגלוש באתר בצורה נוחה ונגישה.</p>
+    <p>אנחנו רוצים שהאתר יהיה נוח לשימוש גם לאנשים עם מוגבלות, ופועלים לשפר אותו כאשר מתגלה בעיה.</p>
 
     <h2>רמת הנגישות</h2>
-    <p>אנו פועלים לעמוד בדרישות תקן WCAG 2.1 ברמה AA ובהנחיות תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), תשע"ג-2013.</p>
+    <p>האתר תוכנן תוך התייחסות לתקן הישראלי ת"י 5568 ולהנחיות WCAG 2.1 ברמה AA, בהתאם להוראות הנגישות החלות בישראל.</p>
+    <p>הצהרה זו מבוססת על בדיקה עצמית שביצענו באתר, ולא על ביקורת נגישות חיצונית על ידי בודק/ת נגישות מוסמכ/ת. ייתכן שיימצאו רכיבים הדורשים שיפור נוסף. נשמח לקבל פניות בנושא.</p>
 
-    <h2>מה בוצע באתר</h2>
+    <h2>התאמות הקיימות באתר</h2>
     <ul>
-      <li>ניווט מלא באמצעות מקלדת בלבד</li>
-      <li>תמיכה בקוראי מסך (NVDA, JAWS, VoiceOver)</li>
-      <li>תגיות ARIA מלאות על כל הרכיבים האינטראקטיביים</li>
-      <li>יחסי ניגודיות עומדים בדרישות WCAG AA</li>
-      <li>כל התמונות כוללות טקסט חלופי (alt)</li>
-      <li>תפריט "דלג לתוכן" בראש הדף</li>
+      <li>אפשרות לעבור בין קישורים ושדות באמצעות המקלדת</li>
+      <li>מבנה כותרות, תוויות וטקסט חלופי לתמונות התוכן</li>
+      <li>קישור "דלג לתוכן" בראש העמודים</li>
+      <li>התאמות ניגודיות וצבעים ברכיבים המרכזיים</li>
       <li>כלי נגישות מובנה (ניגודיות גבוהה, הגדלת טקסט, עצירת אנימציות)</li>
-      <li>תמיכה מלאה בכיוון RTL לעברית</li>
+      <li>תצוגה מימין לשמאל בעברית והתאמה למסכים בגדלים שונים</li>
     </ul>
 
     <h2>תאריך עדכון ההצהרה</h2>
-    <p>הצהרה זו עודכנה לאחרונה ביוני 2025.</p>
+    <p>הצהרה זו עודכנה לאחרונה בנובמבר 2026.</p>
 
     <h2>פניות בנושא נגישות</h2>
     <p>נתקלת בבעיית נגישות או זקוק להתאמה? נשמח לעזור:</p>
@@ -78,7 +74,7 @@
       <li>טלפון: <a href="tel:0549019815">054-9019815</a></li>
       <li>אימייל: <a href="mailto:shaisystems5@gmail.com">shaisystems5@gmail.com</a></li>
     </ul>
-    <p>נשתדל לטפל בפנייתך תוך 5 ימי עסקים.</p>
+    <p>נבדוק את הפנייה ונשתדל לטפל בה בהקדם האפשרי.</p>
 
   </div>
 </main>
@@ -86,9 +82,9 @@
 <footer id="footer" role="contentinfo">
   <div class="container">
     <div class="footer__bottom">
-      <span class="footer__copy">© 2025 שי מערכות חכמות. כל הזכויות שמורות.</span>
+      <span class="footer__copy">© 2026 שי מערכות חכמות. כל הזכויות שמורות.</span>
       <nav class="footer__legal" aria-label="קישורים משפטיים">
-        <a href="index.html">עמוד הבית</a>
+        <a href="/">עמוד הבית</a>
       </nav>
     </div>
   </div>
